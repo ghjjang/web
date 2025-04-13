@@ -1,0 +1,125 @@
+* {
+    padding: 0;
+    margin: 0;
+    
+    /*border: 1px solid #000;*/
+}
+body {
+    background-color: #333;
+    color: white;
+
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width : 100%;
+    align-items: center;
+}
+header> p{
+    font-size: 38px;
+    font-weight: 700;
+    margin-left: 17px;
+    margin-top: 10px;
+    
+}
+header>p>a {
+    text-decoration: none;
+    color: inherit;
+}
+header>p>a:link{
+    color: white;
+}
+header>p>a:visited{
+    color: white;
+}
+header>ul {
+    margin-top: 30px;
+    margin-bottom: auto;
+    margin-right: 30px;
+    display: flex;
+    padding: 0;
+    
+}
+header>ul>li{
+    list-style: none;
+    margin: 0 15px;
+}
+header>ul>li>a{
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+header> ul> li:first-child>a {
+    border-bottom: 5px solid #ffffff3b;
+    border-radius: 10px;
+}
+header>ul>li>a:hover {
+    border-bottom: 5px solid rgb(0, 0, 0);
+    border-radius: 10px;
+}
+
+section {
+    padding: 0 3rem;
+    text-align: center;
+}
+section>p {
+    margin-bottom:  2rem;
+}
+section>p:first-child {
+    font-size: 2rem;
+    font-weight: 900;
+}
+section:last-of-type {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+section>a {
+    display: block;
+    border: 1px solid #000;
+    width: 130px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+}
+section>a:link {
+    color: black;
+}
+section>a:visited {
+    color: black;
+}
+footer {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+footer>a {
+    text-decoration: none;
+}
+footer>a:link{
+    color: white;
+}
+footer>a:visited{
+    color: white;
+}
+footer>a:hover{
+    color: gray;
+}
