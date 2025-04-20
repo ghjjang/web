@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+    <link rel="stylesheet" href="calcuLatorStyle.css">
+    <script src="calcuLatorMain.js" defer></script>
+</head>
+<body>
+    <p class="back" onclick="history.back()">《뒤로가기</p>
+
+    <h1>계산기</h1>
+    <div class="container">
+        <div class="calculator">
+            <form name="forms">
+                <input type="text" name="output" readonly>
+                <input type="button" class="clear" value="C" onclick="document.forms.output.value = ''">
+                <input type="button" class="operator" value="←" onclick="document.forms.output.value = document.forms.output.value.slice(0, -1)">
+                <input type="button" class="operator" value="÷" onclick="document.forms.output.value += '/'">
+                <input type="button" value="1" onclick="document.forms.output.value += '1'">
+                <input type="button" value="2" onclick="document.forms.output.value += '2'">
+                <input type="button" value="3" onclick="document.forms.output.value += '3'">
+                <input type="button" class="operator" value="×" onclick="document.forms.output.value += '*'">
+                <input type="button" value="4" onclick="document.forms.output.value += '4'">
+                <input type="button" value="5" onclick="document.forms.output.value += '5'">
+                <input type="button" value="6" onclick="document.forms.output.value += '6'">
+                <input type="button" class="operator" value="+" onclick="document.forms.output.value += '+'">
+                <input type="button" value="7" onclick="document.forms.output.value += '7'">
+                <input type="button" value="8" onclick="document.forms.output.value += '8'">
+                <input type="button" value="9" onclick="document.forms.output.value += '9'">
+                <input type="button" class="operator" value="-" onclick="document.forms.output.value += '-'">
+                <input type="button" class="dot" value="." onclick="document.forms.output.value += '.'">
+                <input type="button" value="0" onclick="document.forms.output.value += '0'">
+                <input type="button" class="operator result" value="=" onclick="calculateResult()">
+            </form>
+        </div>
+        <div class="history">
+            <p onclick="toggleHistory()">기록 ▼</p>
+            <ul id="history-list" class="hidden"></ul>
+        </div>
+    </div>
+    
+<script>
+const historyList = document.getElementById('history-list');
+
+function calculateResult() {
+    const outputField = document.forms.output;
+    try {
+        const expression = outputField.value;
+        const result = eval(expression);
+        if (result !== undefined) {
+            addToHistory(expression, result); // 히스토리에 추가
+            outputField.value = result; // 결과를 출력 필드에 표시
+        }
+    } catch (error) {
+        alert("잘못된 수식입니다.");
+    }
+}
+
+function addToHistory(expression, result) {
+    const historyItem = document.createElement('li');
+    historyItem.textContent = `${expression} = ${result}`;
+    historyItem.onclick = () => {
+        document.forms.output.value = expression; // 클릭 시 수식을 출력 필드에 표시
+    };
+    historyList.prepend(historyItem); // 최신 항목이 위로 오도록 추가
+}
+
+function toggleHistory() {
+    historyList.classList.toggle('hidden');
+}
+</script>
+</body>
+</html>
