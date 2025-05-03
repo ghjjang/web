@@ -1,0 +1,22 @@
+{
+  "name": "calculator-project",
+  "version": "1.0.0",
+  "description": "A simple calculator application with a history feature and warm pastel tones.",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined yet.'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  },
+  "keywords": [
+    "calculator",
+    "history",
+    "web",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

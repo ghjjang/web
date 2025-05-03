@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>logIn</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <h2>Login</h2>
+        <form method="post" action="서버의url" id="login-form">
+            <input type="text" name="userName" placeholder="Email">
+            <input type="password" name="userPassword" placeholder="Password">
+            <label for="remember-check">
+                <input type="checkbox" id="remember-check">아이디 저장하기
+            </label>
+            <input type="submit" value="Login">
+        </form>
+       
+        
+        <div class="social-login">
+            <p>소셜 로그인</p>
+            <button>Google</button>
+            <button>Facebook</button>
+            <button>Twitter</button>
+        </div>
+
+    </div>
+</body>
+</html>

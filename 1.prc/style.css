@@ -1,0 +1,33 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: #8bbaf0; /* 기본 배경색 */
+    transition: background-color 0.5s ease; /* 배경색 변경 시 서서히 전환 */
+}
+.container h1 {
+    color: white;
+    text-align: center;
+    position: relative ;
+    top: 10%;
+}
+.container button{
+    background-color: white; /* 버튼 배경색 */
+    color: #131313; /* 버튼 글자색 */
+    border: none; /* 기본 테두리 제거 */
+    padding: 20px 40px; /* 버튼 안쪽 여백 */
+    font-size: 30px; /* 글자 크기 */
+    font-style:bold; /* 글자 두껍게 */
+    cursor: pointer; /* 마우스 커서 변경 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* 화면 중앙 정렬 */
+    text-align: center;
+}
