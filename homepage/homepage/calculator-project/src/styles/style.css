@@ -1,0 +1,161 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9f3e8;
+    font-family: 'Roboto', sans-serif;
+    color: #333333;
+}
+
+h1 {
+    color: #333333;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+p.back {
+    color: #333333;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+p.back:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.calculator, .history {
+    width: 320px;
+    border-radius: 10px;
+    background-color: #fff3e6;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.calculator form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.calculator form input {
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 10px;
+    background-color: #ffe6cc;
+    color: #333333;
+    text-align: center;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.calculator form input:hover {
+    background-color: #ffd1a1;
+    transform: scale(1.05);
+}
+
+.calculator form input:active {
+    transform: scale(0.95);
+}
+
+input:not([type="text"]) {
+    cursor: pointer;
+}
+
+.calculator form input[type="text"] {
+    grid-column: span 4;
+    background-color: #fff;
+    color: #333333;
+    font-size: 1.5rem;
+    text-align: right;
+    padding: 15px;
+}
+
+.calculator form .clear {
+    background-color: #ff9999;
+    grid-column: span 2;
+}
+
+.calculator form .operator {
+    background-color: #ffcc66;
+}
+
+.calculator form .dot {
+    background-color: #99ff99;
+}
+
+.calculator form input[value="="] {
+    grid-column: span 2;
+}
+
+.history p {
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background-color: #ffe6cc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.history p:hover {
+    background-color: #ffd1a1;
+}
+
+.history ul {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history ul.hidden {
+    display: none;
+}
+
+.history ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ffcc99;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.history ul li:hover {
+    background-color: #ffcc99;
+}
+
+.history ul li button {
+    float: right;
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+.history ul li button:hover {
+    color: #ff0000;
+}
+
+.history button {
+    background: none;
+    border: none;
+    color: #333333;
+    cursor: pointer;
+    font-size: 10px;
+    transition: color 0.2s;
+}
