@@ -21,6 +21,7 @@ const dischargeDate = new Date('2025-12-23T00:00:00');
 function updateTimeUntilDischarge() {
     const now = new Date(); // 현재 시간
     const timeDifference = dischargeDate - now; // 밀리초 단위 차이
+    
 
     if (timeDifference <= 0) {
         //  날짜가 지났을 경우
@@ -183,6 +184,33 @@ window.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('keydown', startAudio);
   });
 });
+
+
+
+
+// 로고, 홈 버튼 클릭 이벤트 처리
+const homeButton = document.querySelector('.HOME');
+
+if ((window.location.href === 'https://redesigned-space-fortnight-rjxpg7w64x4fx5g6-8000.app.github.dev/homepage/index.html')) {
+    homeButton.addEventListener('click', () => {
+        scrollToTop(); // 상단으로 스크롤
+    });
+} else { // 현재 페이지가 홈이 아닐 때
+    homeButton.addEventListener('click', () => {
+        window.close(); // 현재 탭 닫기
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

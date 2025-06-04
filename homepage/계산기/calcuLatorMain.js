@@ -46,4 +46,11 @@ window.addEventListener('DOMContentLoaded', function() {
     document.body.style.backgroundColor = getColor();
 });
 
-    
+
+
+// 로고 클릭 이벤트 처리
+const homeButton = document.querySelector('#logo');
+
+    homeButton.addEventListener('click', () => {
+        window.close(); // 현재 탭 닫기
+    });
