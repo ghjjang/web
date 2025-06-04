@@ -1,0 +1,60 @@
+const section1 = document.querySelector('.section');
+const letterL = document.querySelector('.section .hero h2 span:nth-child(1)'); // 첫 번째 span (L)
+const letterH1 = document.querySelector('.section .hero h2 span:nth-child(2)'); // 두 번째 span (H)
+const letterH2 = document.querySelector('.section .hero h2 span:nth-child(3)'); // 세 번째 span (H)
+
+let currentBackgroundColor = getComputedStyle(section1).backgroundColor; // 초기값 저장
+
+// 배경색 변경 함수
+function changeBackground(color) {
+    section1.style.backgroundColor = color;
+    currentBackgroundColor = color;
+    localStorage.setItem('section1BgColor', color);
+    console.log('현재 배경색:', currentBackgroundColor);
+}
+
+function getCurrentBackgroundColorVar() {
+  return currentBackgroundColor;
+}
+
+
+// 더블클릭시 기본 배경색으로 복원
+const defaultBackground = getComputedStyle(section1).backgroundColor;
+[letterL, letterH1, letterH2].forEach(letter => {
+    letter.addEventListener('dblclick', () => changeBackground(defaultBackground)); // 기본 배경색
+});
+
+// 각 글자(span)에 클릭 이벤트 리스너 추가
+[letterL, letterH1, letterH2].forEach(letter => {
+    letter.addEventListener('click', (event) => {
+        // 클릭된 요소의 텍스트(예: 'L', 'H', 'H')를 콘솔에 출력
+        console.log('클릭한 글자:', event.target.textContent);
+
+        // 글자에 따라 배경색 변경
+        if (event.target === letterL) {
+            changeBackground('#ffd1dc' );
+        } else if (event.target === letterH1) {
+            changeBackground('#c1e1c1');
+        } else if (event.target === letterH2) {
+            changeBackground('#add8e6');
+        }
+    });
+});
+
+
+// 호버시에 배경색 잠시 덮어씌우기
+[letterL, letterH1, letterH2].forEach(letter => {
+    letter.addEventListener('mouseenter', (event) => {
+        if (event.target === letterL) {
+            section1.style.backgroundColor = '#ffd1dc';
+        } else if (event.target === letterH1) {
+            section1.style.backgroundColor = '#c1e1c1';
+        } else if (event.target === letterH2) {
+            section1.style.backgroundColor = '#add8e6';
+        }
+    });
+    letter.addEventListener('mouseleave', () => {
+        // 마지막 클릭된 색상 또는 초기값으로 복원
+        section1.style.backgroundColor = currentBackgroundColor;
+    });
+});
