@@ -23,8 +23,6 @@ document.getElementById('result').value = ''; // display의 값을 ''으로 저�
 //bottomSheet에 추가
 function toggleSheet() {
     var bottomSheet = document.getElementById('bottomSheet');
-    var result = document.getElementById('result').value;
-    var display = document.getElementById('display').value;
 
     // overlay 확장/축소
     if (bottomSheet.classList.contains('expanded')) {
@@ -32,14 +30,36 @@ function toggleSheet() {
     } else {
         bottomSheet.classList.add('expanded');
 
-        // 히스토리 추가
-        var historyContainer = document.querySelector('.contentt');
-        var newHistoryItem = document.createElement('div');
-        newHistoryItem.className = 'history';
-        newHistoryItem.textContent = display + ' ' + result;
-        historyContainer.appendChild(newHistoryItem);
+       
     }
 }
+// history 추가
+function addHistory() {
+    var result = document.getElementById('result').value;
+    var display = document.getElementById('display').value;
+    var historyList = document.getElementById('historyList');
+
+    // 히스토리 항목 생성
+    var historyItem = document.createElement('p');
+    historyItem.textContent = display + ' ' + result;
+
+    // 히스토리 목록에 추가
+    historyList.appendChild(historyItem);
+
+    // 히스토리 목록에 추가한 내용을 bottomSheet에 표시
+    var bottomSheetContent = document.getElementById('bottomSheetContent');
+    var sheetItem = document.createElement('p');
+    sheetItem.textContent = display + ' ' + result;
+    bottomSheetContent.appendChild(sheetItem);  
+    
+}
+
+    
+    
+
+
+
+
 
 
 window.addEventListener('DOMContentLoaded', function() {
