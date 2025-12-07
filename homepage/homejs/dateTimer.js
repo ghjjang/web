@@ -54,7 +54,7 @@ export function startDischargeTimer(dischargeDateStr, displayId = 'time-until-di
   }
 
   // 남은 날짜별 알림 설정
-  const alertDays = opts.alertDays || [100, 90, 60, 59, 50, 40, 30, 20, 10, 5, 4, 3, 2, 1];
+  const alertDays = opts.alertDays || [100, 90, 60, 59, 50, 40, 30, 20, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
   const alertStatus = {};
   alertDays.forEach(d => alertStatus[d] = false);
 

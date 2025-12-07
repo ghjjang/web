@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#222222">
+    <meta name="description" content="Military service countdown and personal homepage">
     <title>My page</title>
     <link rel="stylesheet" href="style.css">
-
+    <!-- JavaScript 모듈 import -->
+    <script type="module" src="homejs/main.js"></script>
+    <!-- 오프라인 지원을 위한 매니페스트 -->
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
 </head>
 <body>
 <div class="header">
@@ -14,7 +20,7 @@
     <ul>
       <li class="HOME" id="HOME">HOME</li>
       <!-- 메인 페이지가 켜져있지 않으면 배경색을 감지하고 변경하는것이 실행되지 않아 임시조치로 새탭에서 열기를 활용 -->
-      <li><a href="계산기/calcuLator.html" target="_blank">CALCULATOR</a></li> 
+      <li><a href="calculator/calcuLator.html" target="_blank">CALCULATOR</a></li> 
       <li class="dropdown">
         <a href="#">BLANK</a>
         <ul class="dropdown-menu">
@@ -23,7 +29,7 @@
           <li><a href="#">BLANK</a></li>
         </ul>
       </li>
-      <li><a href="캘린더/date__cal.html" target="_blank">DATE</a></li>
+      <li><a href="./calendar/date__cal.html" target="_blank">DATE</a></li>
       <li><a href="#">BLANK</a></li>
     </ul>
   </div>
@@ -109,11 +115,11 @@
   </footer>
 
   <!-- JS Modules -->
-  <script src="../calculator/utils.js"></script>    
-  <script type="module" src="../homejs/main.js"></script>
-  <script type="module" src="./homejs/musicData.js"></script>   
-  <script type="module" src="./homejs/music.js"></script>
-  <script type="module" src="./homejs/dateTime.js"></script>
+  <script src="calculator/utils.js"></script>    
+  <script type="module" src="homejs/main.js"></script>
+  <script type="module" src="homejs/musicData.js"></script>   
+  <script type="module" src="homejs/music.js"></script>
+  <script type="module" src="homejs/dateTimer.js"></script>
 </body>
 </html>
 

@@ -3,14 +3,32 @@ import { startBirthCounter, startDischargeTimer } from './dateTimer.js';
 import { setupSectionScroll } from './scroll.js';
 import { setupSlider } from './slider.js';
 import { setupMusicPlayer } from './music.js';
+import { DATES, LEAVES, MILITARY_MESSAGES, COLORS, UI } from './config.js';
+import { getRemainingServiceDays } from './serviceCalculator.js';
+
+// 오프라인 지원 설정
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => console.log('ServiceWorker 등록 성공:', registration.scope))
+      .catch(error => console.error('ServiceWorker 등록 실패:', error));
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 🎂 생일로부터 지난 일수 표시
-  startBirthCounter('2004-10-18');
+  // 로딩 상태 표시
+  const loader = document.createElement('div');
+  loader.className = 'page-loader';
+  loader.innerHTML = '로딩 중...';
+  document.body.appendChild(loader);
 
-  // 🎖️ 전역일 카운터 시작
-  const DISCHARGE_DATE = new Date('2025-12-23T00:00:00');
-  const stopDischarge = startDischargeTimer(DISCHARGE_DATE);
+  try {
+    // 🎂 생일로부터 지난 일수 표시
+    startBirthCounter(DATES.BIRTH_DATE);
+
+    // 🎖️ 전역일 카운터 시작
+    const DISCHARGE_DATE = new Date(DATES.DISCHARGE_DATE);
+    const stopDischarge = startDischargeTimer(DISCHARGE_DATE);
 
   const scrollApi = setupSectionScroll();
   const sliderApi = setupSlider();
@@ -138,49 +156,56 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================================
   // 🎵 음악 컨트롤 및 색상 기억
   // ============================================================
-  window.nextTrack = () => musicApi?.nextTrack?.();
-  window.prevTrack = () => musicApi?.prevTrack?.();
-  window.audioPlay = () => musicApi?.audioEl?.play?.();
-  window.audioPause = () => musicApi?.audioEl?.pause?.();
+    window.nextTrack = () => musicApi?.nextTrack?.();
+    window.prevTrack = () => musicApi?.prevTrack?.();
+    window.audioPlay = () => musicApi?.audioEl?.play?.();
+    window.audioPause = () => musicApi?.audioEl?.pause?.();
 
-  const section1 = document.getElementById('section1');
-  const savedBg = localStorage.getItem('section1BgColor');
-  if (section1 && savedBg) section1.style.backgroundColor = savedBg;
+    const section1 = document.getElementById('section1');
+    const savedBg = localStorage.getItem('section1BgColor');
+    if (section1 && savedBg) section1.style.backgroundColor = savedBg;
 
-  const hero = section1?.querySelector('.hero');
-  if (hero) {
-    const spans = Array.from(hero.querySelectorAll('h2 span'));
-    spans.forEach((span, idx) => span.dataset.letterIndex = String(idx));
+    const hero = section1?.querySelector('.hero');
+    if (hero) {
+      const spans = Array.from(hero.querySelectorAll('h2 span'));
+      spans.forEach((span, idx) => span.dataset.letterIndex = String(idx));
 
-    function getColorByIndex(i) {
-      if (i === 0) return '#ffd1dc';
-      if (i === 1) return '#c1e1c1';
-      if (i === 2) return '#add8e6';
-      return window.getComputedStyle(section1).backgroundColor;
+      function getColorByIndex(i) {
+        if (i === 0) return COLORS.PINK;
+        if (i === 1) return COLORS.GREEN;
+        if (i === 2) return COLORS.BLUE;
+        return window.getComputedStyle(section1).backgroundColor;
+      }
+
+      spans.forEach(span => {
+        span.addEventListener('dblclick', () => {
+          const defaultBg = getComputedStyle(section1).backgroundColor;
+          section1.style.backgroundColor = defaultBg;
+          localStorage.removeItem('section1BgColor');
+        });
+
+        span.addEventListener('click', (e) => {
+          const idx = Number(e.target.dataset.letterIndex);
+          const color = getColorByIndex(idx);
+          section1.style.backgroundColor = color;
+          localStorage.setItem('section1BgColor', color);
+        });
+
+        span.addEventListener('mouseenter', (e) => {
+          const idx = Number(e.target.dataset.letterIndex);
+          section1.style.backgroundColor = getColorByIndex(idx);
+        });
+        span.addEventListener('mouseleave', () => {
+          const saved = localStorage.getItem('section1BgColor') || getComputedStyle(section1).backgroundColor;
+          section1.style.backgroundColor = saved;
+        });
+      });
     }
-
-    spans.forEach(span => {
-      span.addEventListener('dblclick', () => {
-        const defaultBg = getComputedStyle(section1).backgroundColor;
-        section1.style.backgroundColor = defaultBg;
-        localStorage.removeItem('section1BgColor');
-      });
-
-      span.addEventListener('click', (e) => {
-        const idx = Number(e.target.dataset.letterIndex);
-        const color = getColorByIndex(idx);
-        section1.style.backgroundColor = color;
-        localStorage.setItem('section1BgColor', color);
-      });
-
-      span.addEventListener('mouseenter', (e) => {
-        const idx = Number(e.target.dataset.letterIndex);
-        section1.style.backgroundColor = getColorByIndex(idx);
-      });
-      span.addEventListener('mouseleave', () => {
-        const saved = localStorage.getItem('section1BgColor') || getComputedStyle(section1).backgroundColor;
-        section1.style.backgroundColor = saved;
-      });
-    });
+  } catch (error) {
+    console.error('페이지 초기화 중 오류 발생:', error);
+    showToast('페이지 로딩 중 문제가 발생했습니다. 새로고침을 해주세요.');
+  } finally {
+    // 로딩 상태 제거
+    document.body.removeChild(loader);
   }
 });

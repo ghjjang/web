@@ -25,7 +25,6 @@ export function setupSlider() {
 
   if (nextBtn) nextBtn.addEventListener('click', next);
   if (prevBtn) prevBtn.addEventListener('click', prev);
-
   // mouse drag + touch support
   let startX = null;
 
